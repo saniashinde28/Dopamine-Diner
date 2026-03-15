@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine-Diner</title>
+</head>
+
+<body>
+    <h3>Listing Details</h3>
+    <ul>
+        <li><strong>Name:</strong>
+            <%= listing.name %>
+        </li>
+        <li><strong>Category:</strong>
+            <%= listing.category %>
+        </li>
+        <li><strong>Description:</strong>
+            <%= listing.description %>
+        </li>
+        <li><strong>Duration:</strong>
+            <%= listing.duration %> mins
+        </li>
+        <li><strong>Impact Level:</strong>
+            <%= listing.impactLevel %>
+        </li>
+        <li><strong>Effort:</strong>
+            <%= listing.effort %>
+        </li>
+        <li><strong>Mood Tags:</strong>
+            <%= listing.moodTags.join(', ') %></li>
+        <li><strong>Image:</strong> <img src="<%= listing.image %>" alt="<%= listing.name %>" style="max-width:200px;"></li>
+        
+        </ul>
+        <a href="/listings/<%=listing._id%>/edit">Edit this Activity</a>
+        <br><br>
+        <form method="post" action="/listings/<%=listing._id%>?_method=delete">
+            <button>Delete this activity</button>
+        </form>
+
+</body>
+
+</html>

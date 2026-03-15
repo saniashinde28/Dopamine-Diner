@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopamine Diner</title>
+</head>
+
+<body>
+    <h3>Add a New Activity</h3>
+    <form method="post" action="/listings">
+
+        <!-- Name -->
+        <label for="name">Activity Name:</label><br>
+        <input type="text" name="listing[name]" id="name" required minlength="3" maxlength="80" size="40"><br><br>
+
+        <!-- Category -->
+        <label for="category">Category:</label><br>
+        <select id="category" name="listing[category]" required>
+            <option value="">--Select--</option>
+            <option value="starter">Starter</option>
+            <option value="main">Main</option>
+            <option value="dessert">Dessert</option>
+        </select><br><br>
+
+        <!-- Description -->
+        <label for="description">Description:</label><br>
+        <textarea name="listing[description]" id="description" rows="3" required minlength="10" maxlength="300"
+            cols="40"></textarea><br><br>
+
+        <!-- Duration -->
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="number" name="listing[duration]" id="duration" min="1" max="180" size="10"><br>
+        <small>Dessert activities should not exceed 90 minutes</small><br><br>
+
+        <!-- Impact Level -->
+        <label for="impactLevel">Impact Level:</label><br>
+        <select name="listing[impactLevel]" id="impactLevel" required>
+            <option value="">--Select--</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select><br><br>
+
+        <!-- Effort -->
+        <label for="effort">Effort:</label><br>
+        <select name="listing[effort]" id="effort" required>
+            <option value="">--Select--</option>
+            <option value="easy">Easy</option>
+            <option value="moderate">Moderate</option>
+            <option value="hard">Hard</option>
+        </select><br><br>
+
+        <!-- Mood Tags -->
+        <label for="moodTags">Mood Tags (comma-separated):</label><br>
+        <input type="text" name="listing[moodTags]" id="moodTags" size="40" placeholder="neutral, energetic"><br><br>
+
+        <!-- Image URL -->
+        <label for="image">Image URL:</label><br>
+        <input type="text" name="listing[image]" id="image" size="40" placeholder="https://example.com/image.jpg"><br><br>
+
+
+        <!-- Submit Button -->
+        <button type="submit">Add Activity</button>
+
+    </form>
+
+</body>
+
+</html>

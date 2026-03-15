@@ -71,7 +71,7 @@ const ListingSchema=new Schema(
 
   isDefault: {
     type: Boolean,
-    default: true
+    default: false
   },
 
   createdAt: {

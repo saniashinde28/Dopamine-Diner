@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DopamineDiner</title>
+</head>
+
+<body>
+    <h2>Edit Listing</h2>
+
+    <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+
+        <!-- Name -->
+        <label for="name">Name:</label><br>
+        <input type="text" name="listing[name]" id="name" required minlength="3" maxlength="80" size="40"
+            value="<%= listing.name %>"><br><br>
+
+        <!-- Category -->
+        <label for="category">Category:</label><br>
+        <select id="category" name="listing[category]" required>
+            <option value="">--Select--</option>
+            <option value="starter" <%=listing.category==='starter' ? 'selected' : '' %>>Starter</option>
+            <option value="main" <%=listing.category==='main' ? 'selected' : '' %>>Main</option>
+            <option value="dessert" <%=listing.category==='dessert' ? 'selected' : '' %>>Dessert</option>
+        </select><br><br>
+
+        <!-- Description -->
+        <label for="description">Description:</label><br>
+        <textarea name="listing[description]" id="description" rows="3" minlength="10" maxlength="300"
+            cols="40"><%= listing.description %></textarea><br><br>
+
+        <!-- Duration -->
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="number" name="listing[duration]" id="duration" min="1" max="180" size="10"
+            value="<%= listing.duration %>"><br>
+        <small>Dessert activities should not exceed 90 minutes</small><br><br>
+
+        <!-- Impact Level -->
+        <label for="impactLevel">Impact Level:</label><br>
+        <select name="listing[impactLevel]" id="impactLevel" required>
+            <option value="">--Select--</option>
+            <option value="low" <%=listing.impactLevel==='low' ? 'selected' : '' %>>Low</option>
+            <option value="medium" <%=listing.impactLevel==='medium' ? 'selected' : '' %>>Medium</option>
+            <option value="high" <%=listing.impactLevel==='high' ? 'selected' : '' %>>High</option>
+        </select><br><br>
+
+        <!-- Effort -->
+        <label for="effort">Effort:</label><br>
+        <select name="listing[effort]" id="effort" required>
+            <option value="">--Select--</option>
+            <option value="easy" <%=listing.effort==='easy' ? 'selected' : '' %>>Easy</option>
+            <option value="moderate" <%=listing.effort==='moderate' ? 'selected' : '' %>>Moderate</option>
+            <option value="hard" <%=listing.effort==='hard' ? 'selected' : '' %>>Hard</option>
+        </select><br><br>
+
+        <!-- Mood Tags -->
+        <label for="moodTags">Mood Tags (comma-separated):</label><br>
+        <input type="text" name="listing[moodTags]" id="moodTags" size="40" value="<%= listing.moodTags.join(', ') %>"><br><br>
+
+        <!-- Image URL -->
+        <label for="image">Image URL:</label><br>
+        <input type="text" name="listing[image]" id="image" size="40" value="<%= listing.image %>"><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Update Listing</button>
+
+    </form>
+
+</body>
+
+</html>
