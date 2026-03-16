@@ -4,11 +4,14 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride=require("method-override");
+const ejsMate=require("ejs-mate");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname,"/public")));
 app.use(methodOverride("_method"));
+app.engine('ejs',ejsMate);
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/DopamineDiner');
@@ -74,6 +77,24 @@ app.delete("/listings/:id",async(req,res)=>{
     let {id}=req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
+
+});
+
+//about route
+app.get("/about",(req,res)=>{
+    res.render("listings/about.ejs");
+
+});
+
+//my cart route
+app.get("/cart",(req,res)=>{
+    res.render("listings/cart.ejs");
+
+});
+
+//new  route
+app.get("/addNew",(req,res)=>{
+    res.render("listings/new.ejs");
 
 });
 

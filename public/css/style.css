@@ -1,0 +1,17 @@
+/* Navbar */
+.navbar {
+    padding-top: 0.3rem;
+    /* default is ~0.5rem */
+    padding-bottom: 0.3rem;
+    min-height: 50px;
+}
+
+.nav-link {
+    color: #222222 !important;
+
+}
+
+.navbar-brand img {
+    max-height: 40px;
+    width: auto;
+}
