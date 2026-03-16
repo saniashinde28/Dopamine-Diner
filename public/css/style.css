@@ -15,3 +15,62 @@
     max-height: 40px;
     width: auto;
 }
+
+/* footer */
+
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+  cursor: pointer;
+}
+.footer {
+  position: relative;
+  padding: 1.5rem 2rem;
+  background-color: #f8f9fa;
+  text-align: center;
+
+  /* Remove the solid border */
+  border-top: none;
+
+  /* Add a fading top line using a pseudo-element */
+}
+
+.footer-content p {
+  margin: 0.2rem 0;
+  color: #222;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px; /* thickness of the line */
+  
+  /* Gradient fading at edges */
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+  background: #e0f7ff;
+}
+
