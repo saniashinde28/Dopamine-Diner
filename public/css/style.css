@@ -74,3 +74,137 @@
   background: #e0f7ff;
 }
 
+/* Card */
+.activity-card {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: box-shadow 0.25s ease;
+}
+
+.activity-card:hover {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+}
+
+/* Image */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* ⭐ ALWAYS visible title strip */
+.activity-title-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+/* hide strip on hover */
+.activity-card:hover .activity-title-bar {
+  opacity: 0;
+}
+
+/* Hover Overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.45) 45%,
+    rgba(0,0,0,0.1) 75%,
+    rgba(0,0,0,0) 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 28px;
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.activity-card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Name inside overlay */
+.activity-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+/* Buttons container */
+.card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 65%;
+}
+
+/* Buttons */
+.btn {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn i {
+  margin-right: 6px;
+}
+
+/* View button */
+.btn.preview {
+  background: #fff;
+  color: #000;
+}
+
+.btn.preview:hover {
+  background: #f3f3f3;
+  transform: translateY(-2px);
+}
+
+/* Add button */
+.btn.copy {
+  background: #000;
+  color: #fff;
+}
+
+.btn.copy:hover {
+  background: #222;
+  transform: translateY(-2px);
+}

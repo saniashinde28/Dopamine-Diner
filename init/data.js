@@ -10,7 +10,7 @@ duration:10,
 impactLevel:"medium",
 effort:"easy",
 moodTags:["low","neutral"],
-image:"/images/aroma.jpg",
+image:"/images/aroma.png",
 isDefault:true,
 createdAt:new Date()
 },

@@ -1,17 +1,44 @@
 <% layout("/layouts/boilerplate") %>
 
-<body>
-    <h1>All Listings</h1>
-    <!-- <form method="GET" action="/listings/new">
+    <body>
+        <h1>All Listings</h1>
+        <!-- <form method="GET" action="/listings/new">
         <button>Create New</button>
     </form> -->
-    <ul>
-        <% for(let listing of allListings){ %>
-            <li>
-                <a href="/listings/<%=listing._id%>"><%=listing.name%></a>
-            </li>
-            <% } %>
-    </ul>
+        <ul>
+            <% for(let listing of allListings){ %>
 
-</body>
+                <div class="activity-card">
 
+                    <img src="<%= listing.image %>" alt="Activity Image" class="card-image">
+
+                    <!--  ALWAYS visible title -->
+                    <div class="activity-title-bar">
+                        <%= listing.name %>
+                    </div>
+
+                    <!-- Hover overlay -->
+                    <div class="card-overlay">
+
+                        <span class="activity-name">
+                            <%= listing.name %>
+                        </span>
+
+                        <div class="card-buttons">
+                            <a href="/listings/<%= listing._id %>" class="btn preview">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+
+                            <button class="btn copy">
+                                <i class="fas fa-plus"></i> Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <% } %>
+        </ul>
+
+    </body>
