@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Navbar */
 .navbar {
     padding-top: 0.3rem;
@@ -74,24 +78,41 @@
   background: #e0f7ff;
 }
 
-/* Card */
+/* GRID FIX — makes cards align perfectly */
+.row {
+  align-items: stretch;
+}
+
+/* ===== Activity Gallery Layout ===== */
+
+.activity-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;  
+  margin-top: 15px;
+}
+
+/* ===== Card ===== */
+
 .activity-card {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 260px;              
+  aspect-ratio: 1 / 1;      
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  background: #f9f9f9;
+  background: transparent;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  transition: box-shadow 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .activity-card:hover {
   box-shadow: 0 10px 24px rgba(0,0,0,0.2);
 }
 
-/* Image */
+/* ===== Image ===== */
+
 .card-image {
   width: 100%;
   height: 100%;
@@ -101,7 +122,8 @@
   z-index: 1;
 }
 
-/* ⭐ ALWAYS visible title strip */
+/* ===== Always visible title strip ===== */
+
 .activity-title-bar {
   position: absolute;
   bottom: 0;
@@ -117,12 +139,12 @@
   transition: opacity 0.3s ease;
 }
 
-/* hide strip on hover */
 .activity-card:hover .activity-title-bar {
   opacity: 0;
 }
 
-/* Hover Overlay */
+/* ===== Hover Overlay ===== */
+
 .card-overlay {
   position: absolute;
   inset: 0;
@@ -153,14 +175,16 @@
   transform: translateY(0);
 }
 
-/* Name inside overlay */
+/* ===== Name ===== */
+
 .activity-name {
   color: #fff;
   font-weight: 600;
   font-size: 1.15rem;
 }
 
-/* Buttons container */
+/* ===== Buttons ===== */
+
 .card-buttons {
   display: flex;
   flex-direction: column;
@@ -168,7 +192,6 @@
   width: 65%;
 }
 
-/* Buttons */
 .btn {
   padding: 7px 12px;
   border-radius: 8px;
@@ -187,7 +210,6 @@
   margin-right: 6px;
 }
 
-/* View button */
 .btn.preview {
   background: #fff;
   color: #000;
@@ -198,7 +220,6 @@
   transform: translateY(-2px);
 }
 
-/* Add button */
 .btn.copy {
   background: #000;
   color: #fff;
@@ -207,4 +228,442 @@
 .btn.copy:hover {
   background: #222;
   transform: translateY(-2px);
+}
+.col-lg-4,
+.col-md-6,
+.col-sm-12 {
+  background: transparent !important;
+}
+
+.container,
+.row {
+  background: transparent !important;
+}
+
+/* ===== New page ===== */
+
+body {
+  min-height: 100vh;
+  background: #f6f7fb;   /* soft neutral grey */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* ===== heading ===== */
+
+h3 {
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 22px;
+}
+
+/* ===== labels ===== */
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* ===== inputs ===== */
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #e4e6eb;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.06);
+}
+
+/* ===== spacing rhythm ===== */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* helper text */
+
+.text-muted {
+  font-size: 0.8rem;
+}
+
+/* ===== button ===== */
+
+.btn-dark {
+  background: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-weight: 500;
+  width: auto;
+  min-width: 130px;
+  transition: all 0.2s ease;
+}
+
+.btn-dark:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* ===== HOME PAGE BACKGROUND ONLY ===== */
+
+.home-bg {
+  min-height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* soft grid + gradient glow */
+
+.home-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background-image:
+    linear-gradient(to right, rgba(229,231,235,0.7) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229,231,235,0.7) 1px, transparent 1px),
+    radial-gradient(circle 500px at 0% 20%, rgba(139,92,246,0.14), transparent),
+    radial-gradient(circle 500px at 100% 0%, rgba(59,130,246,0.14), transparent);
+
+  background-size:
+    48px 48px,
+    48px 48px,
+    100% 100%,
+    100% 100%;
+
+  pointer-events: none;
+}
+
+
+/* ===== Activity show page ===== */
+
+.activity-show {
+  max-width: 900px;
+}
+
+/* image */
+
+.activity-img-box {
+  width: 100%;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.activity-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* info rows */
+
+.activity-info {
+  border-top: 1px solid #eee;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.info-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  font-weight: 500;
+  color: #111;
+}
+
+/* description */
+
+.activity-desc {
+  color: #444;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* actions */
+
+.activity-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* === HERO sec === */
+
+.hero_sec {
+    text-align: center;
+    padding: 60px 20px 48px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero_sec h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.hero_sec h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.hero_sec p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto 32px;
+}
+
+
+/* === FEATURES Section === */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 0 16px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #f0f0f5;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+  transform: translateY(-2px);
+}
+
+.feature-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.violet-bg {
+  background-color: #ede9fe;
+  color: #7c3aed;
+}
+
+.pink-bg {
+  background-color: #fce7f3;
+  color: #db2777;
+}
+
+.feature-content h3 {
+  margin: 0 0 2px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.2;
+}
+
+.feature-content p {
+  margin: 0;
+  font-size: 12px;
+  color: #8b8b9e;
+  line-height: 1.4;
+}
+
+/* ===== CTA button ===== */
+.cta-wrapper {
+  margin: 0 auto 36px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #1a1a2e;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  border: 1.5px solid #e5e7eb;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.08),
+    0 16px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.25s ease;
+}
+
+.cta-btn:hover {
+  background: #f9fafb;
+  color: #1a1a2e;
+  transform: translateY(-3px);
+  border-color: #d1d5db;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cta-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.cta-btn i {
+  font-size: 14px;
+  transition: transform 0.25s ease;
+  color: #6b7280;
+}
+
+.cta-btn:hover i {
+  transform: translateY(3px);
+  color: #1a1a2e;
+}
+
+/* ===== Category Panel Styling ===== */
+.category-panel {
+  background-color: #f8f9fa;
+  backdrop-filter: blur(6px);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Category Buttons ===== */
+.category-btn {
+  position: relative;
+  font-weight: 500;
+  color: #444;
+  transition: color 0.2s;
+  padding: 0.25rem 0.75rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.category-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #6d5dfc; /* purple underline */
+  transition: width 0.3s ease;
+}
+
+.category-btn:hover::after,
+.category-btn.active::after {
+  width: 100%;
+}
+
+.category-btn.active {
+  color: #6d5dfc;
+  font-weight: 600;
+}
+
+
+/* ===== Category Panel Styling ===== */
+.category-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* spread buttons across full width */
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;  /* optional, keeps panel from stretching too much on huge screens */
+  margin: 0 auto;     /* center the panel horizontally */
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+}
+
+/* ===== Category Buttons ===== */
+.category-btn {
+  flex: 1;               /* each button takes equal space */
+  text-align: center;    /* center the text */
+  margin: 0 0.25rem;     /* small spacing between buttons */
+  position: relative;
+  font-weight: 500;
+  color: #444;
+  transition: color 0.2s;
+  padding: 0.5rem 0;     /* vertical padding */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.category-btn::after {
+  content: "";
+  position: absolute;
+  left: 10%;            /* underline centered under text */
+  bottom: 0;
+  height: 2px;
+  width: 80%;           /* underline width relative to button */
+  background-color: #6d5dfc;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.category-btn:hover::after,
+.category-btn.active::after {
+  transform: scaleX(1);
+}
+
+.category-btn.active {
+  color: #6d5dfc;
+  font-weight: 600;
+}
+
+/* Responsive: stack buttons on small screens */
+@media (max-width: 768px) {
+  .category-panel {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .category-btn {
+    flex: none;
+    width: 100%;
+    margin: 0.25rem 0;
+  }
 }

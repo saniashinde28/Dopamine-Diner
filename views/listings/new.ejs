@@ -1,64 +1,87 @@
 <% layout("/layouts/boilerplate") %>
 
-<body>
-    <h3>Add a New Activity</h3>
-    <form method="post" action="/listings">
 
-        <!-- Name -->
-        <label for="name">Activity Name:</label><br>
-        <input type="text" name="listing[name]" id="name" required minlength="3" maxlength="80" size="40"><br><br>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="container mt-4">
+                <h3 class="mb-4">Add a New Activity</h3>
 
-        <!-- Category -->
-        <label for="category">Category:</label><br>
-        <select id="category" name="listing[category]" required>
-            <option value="">--Select--</option>
-            <option value="starter">Starter</option>
-            <option value="main">Main</option>
-            <option value="dessert">Dessert</option>
-        </select><br><br>
+                <form method="post" action="/listings">
 
-        <!-- Description -->
-        <label for="description">Description:</label><br>
-        <textarea name="listing[description]" id="description" rows="3" required minlength="10" maxlength="300"
-            cols="40"></textarea><br><br>
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Activity Name</label>
+                        <input type="text" name="listing[name]" id="name" placeholder="Add a catchy name" minlength="3" maxlength="80"
+                            class="form-control">
+                    </div>
 
-        <!-- Duration -->
-        <label for="duration">Duration (minutes):</label><br>
-        <input type="number" name="listing[duration]" id="duration" min="1" max="180" size="10"><br>
-        <small>Dessert activities should not exceed 90 minutes</small><br><br>
+                    <div class="form-group mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select id="category" name="listing[category]" class="form-control" required>
+                            <option value="">--Select--</option>
+                            <option value="starter">Starter</option>
+                            <option value="main">Main</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                    </div>
 
-        <!-- Impact Level -->
-        <label for="impactLevel">Impact Level:</label><br>
-        <select name="listing[impactLevel]" id="impactLevel" required>
-            <option value="">--Select--</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-        </select><br><br>
+                    <div class="form-group mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="listing[description]" id="description" rows="3" required minlength="10"
+                            maxlength="300" class="form-control"></textarea>
+                    </div>
 
-        <!-- Effort -->
-        <label for="effort">Effort:</label><br>
-        <select name="listing[effort]" id="effort" required>
-            <option value="">--Select--</option>
-            <option value="easy">Easy</option>
-            <option value="moderate">Moderate</option>
-            <option value="hard">Hard</option>
-        </select><br><br>
+                    <div class="row">
+                        <div class="form-group mb-3 col-md-4">
+                            <label for="duration" class="form-label">Duration (minutes)</label>
+                            <input type="number" name="listing[duration]" id="duration" min="1" max="180"
+                                class="form-control">
+                            <small class="text-muted">
+                                Dessert activities should not exceed 90 minutes
+                            </small>
+                        </div>
 
-        <!-- Mood Tags -->
-        <label for="moodTags">Mood Tags (comma-separated):</label><br>
-        <input type="text" name="listing[moodTags]" id="moodTags" size="40" placeholder="neutral, energetic"><br><br>
+                        <div class="form-group mb-3 col-md-8">
+                            <label for="impactLevel" class="form-label">Impact Level</label>
+                            <select name="listing[impactLevel]" id="impactLevel" class="form-control" required>
+                                <option value="">--Select--</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
 
-        <!-- Image URL -->
-        <label for="image">Image URL:</label><br>
-        <input type="text" name="listing[image]" id="image" size="40" placeholder="https://example.com/image.jpg"><br><br>
+                        <div class="form-group mb-3 col-12">
+                            <label for="effort" class="form-label">Effort</label>
+                            <select name="listing[effort]" id="effort" class="form-control" required>
+                                <option value="">--Select--</option>
+                                <option value="easy">Easy</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
 
 
-        <!-- Submit Button -->
-        <button type="submit">Add Activity</button>
 
-    </form>
+                    <div class="form-group mb-3">
+                        <label for="moodTags" class="form-label">
+                            Mood Tags (comma-separated)
+                        </label>
+                        <input type="text" name="listing[moodTags]" id="moodTags" placeholder="neutral, energetic"
+                            class="form-control">
+                    </div>
 
-</body>
+                    <div class="form-group mb-3">
+                        <label for="image" class="form-label">Image URL</label>
+                        <input type="text" name="listing[image]" id="image" placeholder="https://example.com/image.jpg"
+                            class="form-control">
+                    </div>
 
-</html>
+                    <button class="btn btn-dark mt-3">Add Activity</button>
+                    <br>
+                    <br>
+
+                </form>
+            </div>
+        </div>
+    </div>

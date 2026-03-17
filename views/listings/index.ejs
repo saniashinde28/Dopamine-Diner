@@ -1,44 +1,92 @@
 <% layout("/layouts/boilerplate") %>
 
     <body>
-        <h1>All Listings</h1>
-        <!-- <form method="GET" action="/listings/new">
-        <button>Create New</button>
-    </form> -->
-        <ul>
-            <% for(let listing of allListings){ %>
 
-                <div class="activity-card">
+        <div class="container mt-4 home-bg">
+            <br>
+            <br>
+            <!-- Hero Section -->
+            <div class="hero_sec">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-3 sm:mb-4">
+                    <span class="font-medium transition-colors duration-300 text-gray-900 dark:text-gray-50">
+                        Caught Scrolling Again?
+                    </span>
+                </h1>
 
-                    <img src="<%= listing.image %>" alt="Activity Image" class="card-image">
+                <h2 class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-5 text-gray-700 dark:text-gray-300">
+                    We've got something better for your brain
+                </h2>
 
-                    <!--  ALWAYS visible title -->
-                    <div class="activity-title-bar">
-                        <%= listing.name %>
-                    </div>
+                <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-lg mx-auto leading-relaxed transition-colors duration-300 px-4 sm:px-0 text-gray-600 dark:text-gray-200">
+                    Choose from our menu of mood-boosting activities designed to give you genuine satisfaction. Because
+                    life's too short for empty content.
+                    <span class="block mt-3">Start your dopamine menu journey today.</span>
+                </p>
 
-                    <!-- Hover overlay -->
-                    <div class="card-overlay">
-
-                        <span class="activity-name">
-                            <%= listing.name %>
-                        </span>
-
-                        <div class="card-buttons">
-                            <a href="/listings/<%= listing._id %>" class="btn preview">
-                                <i class="fas fa-eye"></i> View
-                            </a>
-
-                            <button class="btn copy">
-                                <i class="fas fa-plus"></i> Add to Cart
-                            </button>
-                        </div>
-
-                    </div>
-
+                <!-- CTA Button -->
+                <div class="cta-wrapper">
+                    <a href="#menu" class="cta-btn">
+                        Explore the Menu <i class="fa-solid fa-arrow-down"></i>
+                    </a>
                 </div>
 
-                <% } %>
-        </ul>
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper violet-bg">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>5-Minute Boost</h3>
+                            <p>Quick dopamine activities</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper pink-bg">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Real Results</h3>
+                            <p>Genuine satisfaction guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navbar 2 -->
+            <%- include("../includes/nav2.ejs",{allListings}) %>
+
+                <div class="activity-gallery" id="menu">
+                    <% for(let listing of allListings){ %>
+                        <div class="activity-card" data-category="<%= listing.category %>">
+                            <img src="<%= listing.image %>" alt="Activity Image" class="card-image">
+
+                            <div class="activity-title-bar">
+                                <%= listing.name %>
+                            </div>
+
+                            <div class="card-overlay">
+                                <span class="activity-name">
+                                    <%= listing.name %>
+                                </span>
+
+                                <div class="card-buttons">
+                                    <a href="/listings/<%= listing._id %>" class="btn preview">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+
+                                    <button class="btn copy">
+                                        <i class="fas fa-plus"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+        </div>
+        <br>
+        <br>
 
     </body>
+    

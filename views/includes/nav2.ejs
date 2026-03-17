@@ -1,0 +1,39 @@
+<% layout("/layouts/boilerplate") %>
+
+  <div class="container-fluid my-4">
+
+    <!-- Heading -->
+    <h2 class="mb-1"><b>Dopamine Menu</b></h2>
+    <p class="mb-4 text-muted fs-6">Choose your pick</p>
+
+    <!-- Category Panel -->
+    <div class="category-panel mb-3">
+      <button class="category-btn active" onclick="filterCategory('All')">All</button>
+      <button class="category-btn" onclick="filterCategory('Starter')">Starter</button>
+      <button class="category-btn" onclick="filterCategory('Main')">Main Course</button>
+      <button class="category-btn" onclick="filterCategory('Dessert')">Dessert</button>
+    </div>
+
+  </div>
+
+  <script>
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.activity-card');
+      const filter = category.toLowerCase();
+
+      cards.forEach(card => {
+        const cardCat = card.dataset.category?.toLowerCase(); // safely get category
+        if (filter === 'all' || cardCat === filter) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Update active button
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === category) btn.classList.add('active');
+      });
+    }
+  </script>
