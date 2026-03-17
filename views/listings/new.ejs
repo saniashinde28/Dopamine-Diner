@@ -6,12 +6,12 @@
             <div class="container mt-4">
                 <h3 class="mb-4">Add a New Activity</h3>
 
-                <form method="post" action="/listings">
+                <form method="post" action="/listings" novalidate class="needs-validation">
 
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Activity Name</label>
                         <input type="text" name="listing[name]" id="name" placeholder="Add a catchy name" minlength="3" maxlength="80"
-                            class="form-control">
+                            class="form-control" required>
                     </div>
 
                     <div class="form-group mb-3">
@@ -27,14 +27,14 @@
                     <div class="form-group mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea name="listing[description]" id="description" rows="3" required minlength="10"
-                            maxlength="300" class="form-control"></textarea>
+                            maxlength="300" class="form-control" required></textarea>
                     </div>
 
                     <div class="row">
                         <div class="form-group mb-3 col-md-4">
                             <label for="duration" class="form-label">Duration (minutes)</label>
                             <input type="number" name="listing[duration]" id="duration" min="1" max="180"
-                                class="form-control">
+                                class="form-control" >
                             <small class="text-muted">
                                 Dessert activities should not exceed 90 minutes
                             </small>
@@ -68,7 +68,7 @@
                             Mood Tags (comma-separated)
                         </label>
                         <input type="text" name="listing[moodTags]" id="moodTags" placeholder="neutral, energetic"
-                            class="form-control">
+                            class="form-control" required>
                     </div>
 
                     <div class="form-group mb-3">
