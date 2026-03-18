@@ -83,8 +83,9 @@ app.post("/listings",normalizeMoodTags,validateListing,wrapAsync(async(req,res,n
 }));
 
 //edit route
-app.get("/listings/:id/edit",normalizeMoodTags,validateListing,wrapAsync(async(req,res)=>{
+app.get("/listings/:id/edit",wrapAsync(async(req,res)=>{
     let {id}=req.params;
+    console.log(req.body);
     const listing = await Listing.findById(id);
     res.render("listings/edit.ejs",{listing});
 
