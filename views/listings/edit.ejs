@@ -1,119 +1,91 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row">
-  <div class="col-8 offset-2">
+  <div class="row">
+    <div class="col-8 offset-2">
 
-<div class="container mt-4">
-  <h3 class="mb-4">Edit Activity</h3>
+      <div class="container mt-4">
+        <h3 class="mb-4">Edit Activity</h3>
 
-  <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+        <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
 
-    <div class="form-group mb-3">
-      <label for="name" class="form-label">Activity Name</label>
-      <input 
-        type="text"
-        name="listing[name]"
-        id="name"
-        class="form-control"
-        required
-        minlength="3"
-        maxlength="80"
-        value="<%= listing.name %>"
-      >
-    </div>
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Activity Name</label>
+            <input type="text" name="listing[name]" id="name" class="form-control" required minlength="3" maxlength="80"
+              value="<%= listing.name %>">
+              <div class="valid-feedback">Title looks good!</div>
+              <div class="invalid-feedback">Please enter the name!</div>
+          </div>
 
-    <div class="form-group mb-3">
-      <label for="category" class="form-label">Category</label>
-      <select id="category" name="listing[category]" class="form-control" required>
-        <option value="">--Select--</option>
-        <option value="starter" <%= listing.category==='starter' ? 'selected' : '' %>>Starter</option>
-        <option value="main" <%= listing.category==='main' ? 'selected' : '' %>>Main</option>
-        <option value="dessert" <%= listing.category==='dessert' ? 'selected' : '' %>>Dessert</option>
-      </select>
-    </div>
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select id="category" name="listing[category]" class="form-control" required>
+              <option value="">--Select--</option>
+              <option value="starter" <%=listing.category==='starter' ? 'selected' : '' %>>Starter</option>
+              <option value="main" <%=listing.category==='main' ? 'selected' : '' %>>Main</option>
+              <option value="dessert" <%=listing.category==='dessert' ? 'selected' : '' %>>Dessert</option>
+            </select>
+          </div>
 
-    <div class="form-group mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea 
-        name="listing[description]"
-        id="description"
-        rows="3"
-        class="form-control"
-        minlength="10"
-        maxlength="300"
-      ><%= listing.description %></textarea>
-    </div>
+          <div class="form-group mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea required name="listing[description]" id="description" rows="3" class="form-control" minlength="10"
+              maxlength="300"><%= listing.description %></textarea>
+              <div class="invalid-feedback">Please enter a short description!</div>
+          </div>
 
-    <div class="row">
-      <div class="form-group mb-3 col-md-4">
-        <label for="duration" class="form-label">Duration (minutes)</label>
-        <input 
-          type="number"
-          name="listing[duration]"
-          id="duration"
-          class="form-control"
-          min="1"
-          max="180"
-          value="<%= listing.duration %>"
-        >
-        <small class="text-muted">
-          Dessert activities should not exceed 90 minutes
-        </small>
+          <div class="row">
+            <div class="form-group mb-3 col-md-4">
+              <label for="duration" class="form-label">Duration (minutes)</label>
+              <input type="number" name="listing[duration]" id="duration" class="form-control" min="1" max="180"
+                value="<%= listing.duration %>">
+              <small class="text-muted">
+                Dessert activities should not exceed 90 minutes
+              </small>
+            </div>
+
+            <div class="form-group mb-3 col-md-8">
+              <label for="impactLevel" class="form-label">Impact Level</label>
+              <select name="listing[impactLevel]" id="impactLevel" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="low" <%=listing.impactLevel==='low' ? 'selected' : '' %>>Low</option>
+                <option value="medium" <%=listing.impactLevel==='medium' ? 'selected' : '' %>>Medium</option>
+                <option value="high" <%=listing.impactLevel==='high' ? 'selected' : '' %>>High</option>
+              </select>
+            </div>
+
+            <div class="form-group mb-3 col-12">
+              <label for="effort" class="form-label">Effort</label>
+              <select name="listing[effort]" id="effort" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="easy" <%=listing.effort==='easy' ? 'selected' : '' %>>Easy</option>
+                <option value="moderate" <%=listing.effort==='moderate' ? 'selected' : '' %>>Moderate</option>
+                <option value="hard" <%=listing.effort==='hard' ? 'selected' : '' %>>Hard</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="moodTags" class="form-label">Mood Tags</label>
+            <input required type="text" name="listing[moodTags]" id="moodTags" class="form-control"
+              value="<%= listing.moodTags.join(', ') %>">
+              <div class="invalid-feedback">Mood tags should be valid!</div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input type="text" name="listing[image]" id="image" class="form-control" value="<%= listing.image %>">
+          </div>
+
+          <button class="btn btn-dark mt-3">
+            Update Activity
+          </button>
+
+          <br><br>
+
+        </form>
       </div>
 
-      <div class="form-group mb-3 col-md-8">
-        <label for="impactLevel" class="form-label">Impact Level</label>
-        <select name="listing[impactLevel]" id="impactLevel" class="form-control" required>
-          <option value="">--Select--</option>
-          <option value="low" <%= listing.impactLevel==='low' ? 'selected' : '' %>>Low</option>
-          <option value="medium" <%= listing.impactLevel==='medium' ? 'selected' : '' %>>Medium</option>
-          <option value="high" <%= listing.impactLevel==='high' ? 'selected' : '' %>>High</option>
-        </select>
-      </div>
 
-      <div class="form-group mb-3 col-12">
-        <label for="effort" class="form-label">Effort</label>
-        <select name="listing[effort]" id="effort" class="form-control" required>
-          <option value="">--Select--</option>
-          <option value="easy" <%= listing.effort==='easy' ? 'selected' : '' %>>Easy</option>
-          <option value="moderate" <%= listing.effort==='moderate' ? 'selected' : '' %>>Moderate</option>
-          <option value="hard" <%= listing.effort==='hard' ? 'selected' : '' %>>Hard</option>
-        </select>
-      </div>
     </div>
-
-    <div class="form-group mb-3">
-      <label for="moodTags" class="form-label">Mood Tags</label>
-      <input 
-        type="text"
-        name="listing[moodTags]"
-        id="moodTags"
-        class="form-control"
-        value="<%= listing.moodTags.join(', ') %>"
-      >
-    </div>
-
-    <div class="form-group mb-3">
-      <label for="image" class="form-label">Image URL</label>
-      <input 
-        type="text"
-        name="listing[image]"
-        id="image"
-        class="form-control"
-        value="<%= listing.image %>"
-      >
-    </div>
-
-    <button class="btn btn-dark mt-3">
-      Update Activity
-    </button>
-
-    <br><br>
-
-  </form>
-</div>
-
-
   </div>
-</div>
-
+  <script src="/js/script.js"></script>
