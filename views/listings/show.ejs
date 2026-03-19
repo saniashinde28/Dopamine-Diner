@@ -89,7 +89,7 @@
 
     <h4 class="mb-4">Share your Boost Experience</h4>
 
-    <form action="/listings/<%=listing._id%>/reviews" method="post">
+    <form action="/listings/<%=listing._id%>/reviews" method="post" novalidate class="needs-validation">
 
       <!-- Rating -->
       <div class="mb-3">
@@ -118,7 +118,9 @@
           rows="3"
           class="form-control"
           placeholder="Write your experience"
+          required
         ></textarea>
+        <div class="invalid-feedback">Please share your experience</div>
       </div>
 
       <!-- Button -->

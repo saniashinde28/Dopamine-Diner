@@ -9,6 +9,7 @@ const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/expressError.js");
 const {listingSchema}=require("./schema.js");
+const {reviewSchema}=require("./schema.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -40,6 +41,17 @@ const normalizeMoodTags = (req,res,next)=>{
 //middleware
 const validateListing=(req,res,next)=>{
     let {error}=listingSchema.validate(req.body);
+    if(error){
+        let errMsg=error.details.map((el)=> el.message).join(",");
+        throw new ExpressError(400,errMsg);
+    }
+    else{
+        next();
+    }
+}
+
+const validateReview=(req,res,next)=>{
+    let {error}=reviewSchema.validate(req.body);
     if(error){
         let errMsg=error.details.map((el)=> el.message).join(",");
         throw new ExpressError(400,errMsg);
@@ -129,7 +141,7 @@ app.get("/addNew",(req,res)=>{
 
 //reviews
 //post route
-app.post("/listings/:id/reviews",async(req,res)=>{
+app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
     let listing=await Listing.findById(req.params.id);
     let newReview= new Review(req.body.review);
     listing.reviews.push(newReview);
@@ -137,7 +149,7 @@ app.post("/listings/:id/reviews",async(req,res)=>{
     await listing.save();
     res.redirect(`/listings/${req.params.id}`);
 
-});
+}));
 
 
 // app.get("/testListings", async (req, res) => {
