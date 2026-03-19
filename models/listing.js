@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
+const Review=require("./review.js");
 
 const ListingSchema=new Schema(
 {
@@ -88,6 +89,15 @@ const ListingSchema=new Schema(
 
 }
 );
+
+//handling deletion for reviews when an activity gets deleted
+ListingSchema.post("findOneAndDelete",async(listing)=>{
+  if(listing){
+    await Review.deleteMany({_id:{$in:listing.reviews}});
+
+  }
+
+});
 
 //creating model
 const Listing=mongoose.model("listing",ListingSchema);
