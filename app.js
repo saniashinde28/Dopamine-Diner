@@ -11,7 +11,9 @@ const ExpressError=require("./utils/expressError.js");
 const {listingSchema}=require("./schema.js");
 const {reviewSchema}=require("./schema.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 var flash = require('connect-flash');
+require('dotenv').config();
 
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
@@ -23,8 +25,10 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 
+// const mongoURL="mongodb://127.0.0.1:27017/DopamineDiner";
+const dbUrl=process.env.ATLASDB_URL;
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/DopamineDiner');
+    await mongoose.connect(dbUrl);
 }
 main().then(() => {
     console.log("db is connected");
@@ -32,8 +36,23 @@ main().then(() => {
     console.log(err);
 });
 
+
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter: 24*3600,
+});
+
+store.on("error",()=>{
+    console.log("error in mongo session store",err);
+
+});
+
 const sessionOptions={
-    secret:"mysupersecretcode",
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized: true,
     cookie:{
