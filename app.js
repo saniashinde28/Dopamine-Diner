@@ -10,6 +10,8 @@ const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/expressError.js");
 const {listingSchema}=require("./schema.js");
 const {reviewSchema}=require("./schema.js");
+const session = require("express-session");
+var flash = require('connect-flash');
 
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
@@ -30,17 +32,30 @@ main().then(() => {
     console.log(err);
 });
 
+const sessionOptions={
+    secret:"mysupersecretcode",
+    resave:false,
+    saveUninitialized: true,
+    cookie:{
+        expires: Date.now() +7*24*60*60*1000,
+        maxAge : 7*24*60*60*1000,
+        httpOnly:true
+    },
+};
 
-//Index route
-app.get("/listings",wrapAsync(async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+app.get("/",(req,res)=>{
+    res.send("working!");
+});
 
-}));
+app.use(session(sessionOptions));
+app.use(flash());
 
-// app.get("/listings", (req, res) => {
-//     res.render("listings/index.ejs");
-// });
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    next();
+
+});
 
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
