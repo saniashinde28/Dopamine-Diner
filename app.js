@@ -18,8 +18,9 @@ const User=require("./models/user.js");
 var flash = require('connect-flash');
 require('dotenv').config();
 
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/review.js");
+const listingRouter=require("./routes/listing.js");
+const reviewRouter=require("./routes/review.js");
+const userRouter=require("./routes/user.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -96,8 +97,9 @@ app.get("/demo",async(req,res)=>{
     res.send(registeredUser);
 });
 
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 //about route
 app.get("/about",(req,res)=>{
