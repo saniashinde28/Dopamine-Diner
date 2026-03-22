@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <!-- Responsive column -->
+            <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+
+                <h3 class="mb-4 text-center">
+                    Login to <span class="fw-bold text-primary">Dopamine Diner</span>
+                </h3>
+
+                <form method="POST" action="/login" novalidate class="needs-validation">
+
+                    <!-- username -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid username.
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback">
+                            Please enter your password.
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="d-grid">
+                        <button class="btn btn-success">Login</button>
+                    </div>
+
+                    <!-- Signup redirect -->
+                    <p class="mt-3 text-center">
+                        Don’t have an account?
+                        <a href="/signup">Sign Up</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
