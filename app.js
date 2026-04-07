@@ -17,6 +17,7 @@ const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
 var flash = require('connect-flash');
 require('dotenv').config();
+const {isLoggedIn} = require("./middleware.js");
 
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
@@ -84,6 +85,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
+    res.locals.currUser=req.user;
     next();
 
 });
@@ -108,7 +110,7 @@ app.get("/about",(req,res)=>{
 });
 
 //my cart route
-app.get("/cart",(req,res)=>{
+app.get("/cart",isLoggedIn,(req,res)=>{
     res.render("listings/cart.ejs");
 
 });
