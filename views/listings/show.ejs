@@ -85,6 +85,7 @@
 
 
   </div>
+  <% if(currUser){ %>
 <hr>
   <div class="row justify-content-center mt-4">
   <div class="col-md-6">
@@ -133,14 +134,16 @@
     </form>
 
   </div>
+   <% } %>
   <hr>
+ 
   <h3 class="text-center"><b>Boost Stories</b></h3>
   
   <div class="row justify-content-center">
   <% for(review of listing.reviews){ %>
     <div class="card col-5 mb-3 ms-3">
       <div class="card-body">
-        <h5 class="card-title">Jane Doe</h5>
+        <h5 class="card-title">@<%= review.author.username %></h5>
         <p class="card-text"><%= review.comment%></p>
         <p class="card-text"><%= review.rating%> stars</p>
       </div>
