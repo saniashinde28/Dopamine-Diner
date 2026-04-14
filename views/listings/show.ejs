@@ -63,6 +63,7 @@
     </p>
   </div>
 
+  <% if(currUser && listing.owner && currUser._id.toString() === listing.owner._id.toString()){ %>
   <div class="activity-actions mt-4">
     <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark me-2">
       Edit
@@ -78,6 +79,7 @@
       </button>
     </form>
   </div>
+  <% } %>
 
 </div>
 
